@@ -53,7 +53,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         indexForEditing = indexPath.row
-        performSegue(withIdentifier: "Edit", sender: fruitsItems[indexPath.row])
+        performSegue(withIdentifier: "Edit", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,11 +63,10 @@ class TableViewController: UITableViewController {
 
         switch segue.identifier ?? "" {
         case "Edit":
-            guard let editFruitsItem = sender as? FruitsItem else { return }
             guard let indexForEditing = indexForEditing else { return }
 
             addItemViewController.mode = .edit(
-                target: editFruitsItem,
+                target: fruitsItems[indexForEditing],
                 completion: { [weak self] fruitsItem in
                     guard let fruitsItem = fruitsItem else { return }
 
