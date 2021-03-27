@@ -51,12 +51,13 @@
                     <navigationItem key="navigationItem" id="nQD-dA-M11">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QBs-dS-CIc">
                             <connections>
-                                <segue destination="wam-dV-mOP" kind="presentation" identifier="Add" id="Onp-J1-HwV"/>
+                                <action selector="add:" destination="OZm-7v-2bc" id="xFY-Dm-6JS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="wam-dV-mOP" kind="presentation" identifier="Edit" id="Zoq-Ym-JAS"/>
+                        <segue destination="wam-dV-mOP" kind="presentation" identifier="Add" id="fNw-FD-c0L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MON-f8-jnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -149,7 +150,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Onp-J1-HwV"/>
+        <segue reference="fNw-FD-c0L"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
