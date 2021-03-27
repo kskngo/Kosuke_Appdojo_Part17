@@ -10,6 +10,11 @@ import UIKit
 class TableViewController: UITableViewController {
     private var indexForEditing: Int?
 
+    private enum Segue: String {
+        case add = "Add"
+        case edit = "Edit"
+    }
+
     private var fruitsItems = [
         FruitsItem(name: "りんご", isChecked: false),
         FruitsItem(name: "みかん", isChecked: true),
@@ -60,9 +65,11 @@ class TableViewController: UITableViewController {
         guard let navigationController = segue.destination as? UINavigationController else { return }
         guard let addItemViewController =
                 navigationController.topViewController as? AddItemViewController else { return }
+        guard let identifier = segue.identifier else { return }
+        guard let segue = Segue(rawValue: identifier) else { return }
 
-        switch segue.identifier ?? "" {
-        case "Edit":
+        switch segue {
+        case .edit:
             guard let indexForEditing = indexForEditing else { return }
 
             addItemViewController.mode = .edit(
@@ -75,15 +82,13 @@ class TableViewController: UITableViewController {
                     self?.indexForEditing = nil
                 }
             )
-        case "Add":
+        case .add:
             addItemViewController.mode = .add(completion: { [weak self] fruitsItem in
                 guard let fruitsItem = fruitsItem else { return }
 
                 self?.fruitsItems.append(fruitsItem)
                 self?.tableView.reloadData()
             })
-        default:
-            break
         }
     }
 }
